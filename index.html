@@ -44,7 +44,7 @@
               <a class="nav-link js-scroll-trigger" href="app/">Aplicaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="doc.fornaxos.com">Documentación</a>
+              <a class="nav-link js-scroll-trigger" href="http://doc.fornaxos.com">Documentación</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
@@ -134,21 +134,21 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" id="name" type="text" placeholder="Nombre *" required data-validation-required-message="Please enter your name.">
+                    <input class="form-control" id="Cname" type="text" placeholder="Nombre *" required data-validation-required-message="Por favor, introduce su nombre.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="email" type="email" placeholder="Email *" required data-validation-required-message="Please enter your email address.">
+                    <input class="form-control" id="Cemail" type="email" placeholder="Email *" required data-validation-required-message="Por favor, introduce su email.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" placeholder="Teléfono *" required data-validation-required-message="Please enter your phone number.">
+                    <input class="form-control" id="Cphone" type="tel" placeholder="Teléfono *" required data-validation-required-message="Por favor, introduce su teléfono.">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <textarea class="form-control" id="message" placeholder="Mensaje *" required data-validation-required-message="Please enter a message."></textarea>
+                    <textarea class="form-control" id="Cmessage" placeholder="Mensaje *" required data-validation-required-message="Por favor, introduce su mensaje."></textarea>
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
@@ -204,6 +204,31 @@
       gtag('js', new Date());
 
       gtag('config', 'UA-112306385-1');
+    </script>
+
+    <script src="https://smtpjs.com/v2/smtp.js"></script>
+    <script type="text/javascript">
+      $("#contactForm").submit(function() {
+        var name = $("#Cname").val();
+        var email = $("#Cemail").val();
+        var phone = $("#Cphone").val();
+        var message = $("#Cmessage").val();
+
+        var sendMessage = "Nombre: " + name;
+        sendMessage += "<br />Email: " + email;
+        sendMessage += "<br />Teléfono: " + phone;
+        sendMessage += "<br />Mensaje: " + message;
+
+
+        Email.send("no-reply@fornaxos.com",
+          "info@fornaxos.com",
+          "Formulario de contacto web",
+          sendMessage,
+          {token: "99655ba6-d679-4f1b-847a-38b0ba513771"});
+
+        $(this)[0].reset();
+
+      });
     </script>
 
   </body>
